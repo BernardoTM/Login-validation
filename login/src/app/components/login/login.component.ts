@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TabelaService } from './../../tabela.service';
 
 @Component({
   selector: 'app-login',
@@ -8,37 +9,47 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  formulario!: FormGroup;
+  formulario: FormGroup;
 
-  constructor(private forBuilder: FormBuilder) {
+  constructor(private forBuilder: FormBuilder, private service: TabelaService) {
    }
 
   ngOnInit(): void {
 
-    this.formulario = new FormGroup({ 
-      nome: new FormControl("", [Validators.required, Validators.minLength(8)]),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      userName: new FormControl("", [Validators.required, Validators.maxLength(5)]),
-      senha: new FormControl("", Validators.required)
+    this.formulario = this.forBuilder.group({
+      nome: ["", [Validators.required, Validators.minLength(8)]],
+      email: ["", [Validators.required, Validators.email]],
+      userName: ["", [Validators.required, Validators.maxLength(5)]],
+      senha: ["", Validators.required]
     });
-
-    /*this.formulario = new this.forBuilder.group({
-      nome: [null],
-      email: [null]
-    });*/
   }
+  
 
   onSubmit(){
-    console.log(this.formulario)
-    this.formulario.reset();
+    
+    if (this.formulario.valid) {
+      console.log(this.formulario)
+      this.service.create(this.formulario.value).subscribe(
+        success => console.log('sucesso'),
+        error => console.log(error),
+      );
+    //  this.formulario.reset();
+    } else {
+      Object.keys(this.formulario.controls).forEach(campo => {
+        const controle = this.formulario.get(campo);
+        controle.markAsTouched();
+      });
+
+    }
   }
 
-  verificaValidTouched(campo: any){
-   return !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched && this.formulario.get(campo)?.value != "";
+  verificaValidTouched(campo: any) {
+   return !this.formulario.get(campo).valid && this.formulario.get(campo).touched && this.formulario.get(campo)?.value != "";
   }
   verificaValueTouched(campo: any){
-    return this.formulario.get(campo)?.touched && this.formulario.get(campo)?.value == "";
+    return this.formulario.get(campo).touched && this.formulario.get(campo).value == "";
    }
+   
 
   aplicaCssErro(campo: any){
     return{

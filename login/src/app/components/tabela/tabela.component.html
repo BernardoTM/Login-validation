@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header">
+        <div class="float-start">
+            <h4>Usuarios</h4>
+        </div>
+        <div class="float-end">
+            <button type="button" class="btn btn-primary" routerLink="login">Novo Usuario</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover" *ngIf="tabela$ | async as dados; else loadingError">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Usuarios</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dado of dados">
+                    <td>{{ dado.id }}</td>
+                    <td>{{ dado.name }}</td>
+                    <td>{{ dado.email }}</td>
+                    <td>{{ dado.username }}</td>
+                    <td>{{ dado.senha }}</td>
+                    <td>
+                        <span class="float-end">
+                            <button class="btn btn-outline-warning mb-1 btn-sm">Atualizar</button>
+                            {{ ' ' }}
+                            <button class="btn btn-outline-danger mb-1 btn-sm">Remover</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #loadingError>
+            <div *ngIf="error$ | async; else loading">
+                Erro no servidor.
+            </div>
+            <ng-template #loading>
+                <samp>Carregando Dados...</samp>
+            </ng-template>
+        </ng-template>
+    
+    </div>
+</div>

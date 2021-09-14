@@ -1,26 +1,37 @@
-<form id="form-cadastro" [formGroup]="formulario" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
-      <label for="nome" class="form-label">Nome:</label>
-      <input class="form-control" [ngClass]="aplicaCssErro('nome')" type="text" name="name" id="nome" formControlName="nome" placeholder="Digite o seu nome...">
-      <app-campo-cotrol-erro  [mostrarErro]="verificaValueTouched('nome')" msgErro="Nome é obrigatório" [mostrarErro2]="verificaValidTouched('nome')" msgErro2="Tamanho minimo são 8"></app-campo-cotrol-erro>
-  </div>
-  <div class="mb-3">
-      <label for="email" class="form-label">Email:</label>
-      <input class="form-control" [ngClass]="aplicaCssErro('email')" type="email" name="email" id="email" formControlName="email"  placeholder="Digite o seu email...">
-      <app-campo-cotrol-erro  [mostrarErro]="verificaValueTouched('email')" msgErro="Email é obrigatório" [mostrarErro2]="verificaValidTouched('email')" msgErro2="Esse não é um email valido"></app-campo-cotrol-erro>
-  </div>
-  <div class="mb-3">
-      <label for="userName" class="form-label">Nome de usuario:</label>
-      <input class="form-control" type="text" [ngClass]="aplicaCssErro('userName')" name="userName" id="userName" formControlName="userName" placeholder="Digite o seu nome de usuario...">
-      <app-campo-cotrol-erro  [mostrarErro]="verificaValueTouched('userName')" msgErro="Nome de usuario é obrigatório" [mostrarErro2]="verificaValidTouched('userName')" msgErro2="Nomer de usuario com ate 5"></app-campo-cotrol-erro>
-  </div>
-  <div class="mb-3">
-      <label for="senha" class="form-label">Senha:</label>
-      <input class="form-control" [ngClass]="aplicaCssErro('senha')" type="password" name="senha" id="senha" formControlName="senha" placeholder="Digite o sua senha...">
-      <app-campo-cotrol-erro  [mostrarErro]="verificaValidTouched('senha')" msgErro="Senha é obrigatória"></app-campo-cotrol-erro>
-  </div>
-  <div class="mb-3">
-      <button type="submit" class="btn btn-primary">Enviar</button>
-  </div>
-  <div class="alert alert-danger d-none" role="alert">Preencha o seu <span id="erro"></span>!</div>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col 3">
+        </div>
+        <div class="col 6">
+            <h1>Cadastro</h1>
+            <form id="form-cadastro" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input class="form-control" [ngClass]="aplicaCssErro('nome')" type="text" name="name" id="nome" formControlName="nome" placeholder="Digite o seu nome...">
+                    <app-campo-cotrol-erro  [mostrarErro]="verificaValueTouched('nome')" msgErro="Nome é obrigatório" [mostrarErro2]="verificaValidTouched('nome')" msgErro2="Tamanho minimo são 8"></app-campo-cotrol-erro>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input class="form-control" [ngClass]="aplicaCssErro('email')" type="email" name="email" id="email" formControlName="email"  placeholder="Digite o seu email...">
+                    <app-campo-cotrol-erro  [mostrarErro]="verificaValueTouched('email')" msgErro="Email é obrigatório" [mostrarErro2]="verificaValidTouched('email')" msgErro2="Esse não é um email valido"></app-campo-cotrol-erro>
+                </div>
+                <div class="mb-3">
+                    <label for="userName" class="form-label">Nome de usuario:</label>
+                    <input class="form-control" type="text" [ngClass]="aplicaCssErro('userName')" name="userName" id="userName" formControlName="userName" placeholder="Digite o seu nome de usuario...">
+                    <app-campo-cotrol-erro  [mostrarErro]="verificaValueTouched('userName')" msgErro="Nome de usuario é obrigatório" [mostrarErro2]="verificaValidTouched('userName')" msgErro2="Nomer de usuario com ate 5"></app-campo-cotrol-erro>
+                </div>
+                <div class="mb-3">
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input class="form-control" [ngClass]="aplicaCssErro('senha')" type="password" name="senha" id="senha" formControlName="senha" placeholder="Digite o sua senha...">
+                    <app-campo-cotrol-erro  [mostrarErro]="verificaValueTouched('senha')" msgErro="Senha é obrigatória"></app-campo-cotrol-erro>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" >Enviar</button>
+                </div>
+                <div class="alert alert-danger d-none" role="alert">Preencha o seu <span id="erro"></span>!</div>
+              </form>
+        </div>
+        <div class="col 3">
+        </div>
+    </div>
+</div>
